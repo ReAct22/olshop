@@ -1,6 +1,7 @@
 <?php 
 
 // Pemnggilan semua layout didalam 1 file
+$this->user_login->proteksi_halaman();
 require_once('v_head.php');
 require_once('v_header_backend.php');
 require_once('v_nav_backend.php');
