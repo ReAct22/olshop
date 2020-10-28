@@ -28,15 +28,15 @@
 							<th>Action</th>
 						</tr>
 					</thead>
-					<tbody class="text-center">
+					<tbody>
 						<?php 
 						$no = 1;
 						foreach ($kategori as $key => $value) {
 						?>
 						<tr>
-							<td><?php echo $no++; ?></td>
+							<td class="text-center"><?php echo $no++; ?></td>
 							<td><?php echo $value->nama_kategori ?></td>
-							<td>
+							<td class="text-center">
 								<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit<?php echo $value->id_kategori; ?>"><i class="fas fa-edit"></i></button>
 								<button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete<?php echo $value->id_kategori; ?>"><i class="fas fa-trash"></i></button>
 							</td>
