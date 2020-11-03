@@ -55,6 +55,7 @@ class Barang extends CI_Controller {
 				$upload_data = array('uploads' => $this->upload->data('file_name'));
 				$config['image_library'] = 'gd2';
 				$config['source_image'] = './assets/gambar/'.$upload_data['uploads']['file_name'];
+				
 			}
 		}
 		
