@@ -52,10 +52,20 @@ class Barang extends CI_Controller {
 				);
 				$this->load->view('layout/v_wrap_backend', $data, FALSE);
 			}else{
-				$upload_data = array('uploads' => $this->upload->data('file_name'));
+				$upload_data = array('uploads' => $this->upload->data());
 				$config['image_library'] = 'gd2';
 				$config['source_image'] = './assets/gambar/'.$upload_data['uploads']['file_name'];
-				
+				$this->load->library('image_lib', $config);	
+				$data = array(
+					'nama_barang' => $this->input->post('nama_barang'),
+					'id_kategori' => $this->input->post('id_kategori'),
+					'harga' => $this->input->post('harga'),
+					'deskripsi' => $this->input->post('deskripsi'),
+					'gambar'	=> $upload_data['uploads']['file_name'],
+			 );
+			 $this->m_barang->add($data);
+			 $this->session->set_flashdata('pesan', 'Data berhasil Ditambahkan');
+			 redirect('barang');
 			}
 		}
 		
