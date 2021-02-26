@@ -43,8 +43,8 @@
 							<td>Rp. <?php echo number_format($value->harga,0) ?></td>
 							<td class="text-center"><img src="<?php echo base_url('assets/gambar/'.$value->gambar) ?>" width="100px"></td>
 							<td class="text-center">
-								<a href="" class="btn btn-warning btn-sm" ><i class="fas fa-edit"></i></a>
-								<a href="" class="btn btn-danger btn-sm" ><i class="fas fa-trash"></i></a>
+								<a href="<?php echo base_url('barang/edit/'.$value->id_barang) ?>" class="btn btn-warning btn-sm" ><i class="fas fa-edit"></i></a>
+								<button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete<?php echo $value->id_barang; ?>"><i class="fas fa-trash"></i></button>
 							</td>
 						</tr>
 							<?php
@@ -57,3 +57,35 @@
             </div>
             <!-- /.card -->
           </div>
+
+		  
+		  <?php	foreach ($barang as $key => $value) {?>
+<!-- Delete form -->
+			<div class="modal fade" id="delete<?php echo $value->id_barang; ?>">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Delete <?php echo $value->nama_barang ?></h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+
+						<h5>Apakah Anda yakin Ingin menghapus Data ini ...?</h5>
+			
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <a href="<?php echo base_url('barang/delete/'.$value->id_barang) ?>" class="btn btn-primary">Delete</a>
+            </div>
+		
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+			<!-- /.modal -->
+						<?php }?>
+

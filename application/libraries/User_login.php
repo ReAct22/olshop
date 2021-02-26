@@ -10,6 +10,7 @@ class User_login
 	{
 		$this->ci =& get_instance();
 		$this->ci->load->model('m_auth');
+		
 	}
 
 	public function login($username,$passwrod)
