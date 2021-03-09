@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-12">
 			<h4>
-				<i class="fas fa-globe"></i> AdminLTE, Inc.
+				<i class="fas fa-shopping-cart"></i> CheckOut
 				<small class="float-right">Date: 2/10/2014</small>
 			</h4>
 		</div>
@@ -24,14 +24,14 @@
 		</div>
 		<!-- /.col -->
 		<div class="col-sm-4 invoice-col">
-			To
+			<!-- To
 			<address>
 				<strong>John Doe</strong><br>
 				795 Folsom Ave, Suite 600<br>
 				San Francisco, CA 94107<br>
 				Phone: (555) 539-1037<br>
 				Email: john.doe@example.com
-			</address>
+			</address> -->
 		</div>
 		<!-- /.col -->
 		<div class="col-sm-4 invoice-col">
@@ -91,9 +91,41 @@
 
 	<div class="row">
 		<!-- accepted payments column -->
-		<div class="col-8">
+
+		<div class="col-sm-8 invoice-col">
+			To :
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label>Provinsi</label>
+						<select name="provinsi" class="form-control" id=""></select>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label for="">Kota/kabupaten</label>
+						<select name="kota" class="form-control" id="">
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label for="">Ekspedisi</label>
+						<select name="ekspedisi" class="form-control" id="">
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label for="">paket</label>
+						<select name="paket" class="form-control" id="">
+						</select>
+					</div>
+				</div>
+			</div>
 
 		</div>
+
 		<!-- /.col -->
 		<div class="col-4">
 
@@ -132,3 +164,28 @@
 		</div>
 	</div>
 </div>
+<script>
+	$(document).ready(function() {
+		//Masukan Data Select Provinsi
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('rajaongkir/provinsi') ?>",
+			success: function(hasil_provinsi) {
+				// console.log(hasil_provinsi);
+				$("select[name='provinsi']").html(hasil_provinsi);
+			}
+		});
+		// Masukan Data Select Kota
+		$("select[name=provinsi]").on("change", function() {
+			var id_provinsi_terpilih = $("option:selected", this).attr("id_provinsi");
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url('rajaongkir/kota') ?>",
+				data: 'id_provinsi=' + id_provinsi_terpilih,
+				success: function(hasil_kota) {
+					$("select[name='kota']").html(hasil_kota);
+				}
+			});
+		});
+	});
+</script>
